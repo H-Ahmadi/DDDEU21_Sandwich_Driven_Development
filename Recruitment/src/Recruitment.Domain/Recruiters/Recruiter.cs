@@ -11,6 +11,18 @@ namespace Recruitment.Domain.Recruiters
         public List<DateTime> Availabilities { get; set; } = new List<DateTime>();
         public string Name { get; set; }
 
+        public Recruiter(long id, string name, List<string> skills, List<DateTime> availabilities)
+        {
+            Id = id;
+            Name = name;
+            Skills = skills;
+            Availabilities = availabilities;
+        }
+        public Recruiter()
+        {
+            
+        }
+
         public override string ToString()
         {
             return new StringBuilder()
