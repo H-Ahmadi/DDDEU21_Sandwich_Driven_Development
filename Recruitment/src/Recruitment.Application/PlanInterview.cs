@@ -24,20 +24,25 @@ namespace Recruitment.Application
             var candidate = _candidates.FindById(candidateId);
             var availableRecruiters = _recruiters.FindRecruiterByAvailability(availability);
 
+            var interview = GetInterview(availability, candidate, availableRecruiters);
+
+            _recruiters.BookAvailability(interview.Recruiter, availability);
+            _interviews.Save(interview);
+            return interview;
+        }
+
+        private static Interview GetInterview(DateTime availability, Candidate candidate, IEnumerable<Recruiter> availableRecruiters)
+        {
             var appropriateRecruiter = availableRecruiters
                 .FirstOrDefault(recruiter => !candidate.Skills.Except(recruiter.Skills).Any());
 
             if (appropriateRecruiter == null) throw new RecruiterNotFoundException();
-
-            _recruiters.BookAvailability(appropriateRecruiter, availability);
-
             var interview = new Interview()
             {
                 Candidate = candidate,
                 InterviewDate = availability,
                 Recruiter = appropriateRecruiter
             };
-            _interviews.Save(interview);
             return interview;
         }
     }
