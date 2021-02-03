@@ -31,11 +31,20 @@ namespace Recruitment.Tests.TestDoubles
                 .ToList();
         }
 
-        public void BookAvailability(Recruiter appropriateRecruiter, DateTime availability)
+        public Recruiter BookAvailability(Recruiter appropriateRecruiter, DateTime availability)
         {
             var recruiters = _recruiters.Where(a => a.Id == appropriateRecruiter.Id);
             foreach (var recruiter in recruiters)
                 recruiter.Availabilities.Remove(availability);
+            return FindRecruiterById(appropriateRecruiter.Id);
         }
+
+        private Recruiter FindRecruiterById(long recruiterId)
+        {
+            var recruiter = _recruiters.FirstOrDefault(a => a.Id == recruiterId);
+            if (recruiter == null) throw new  RecruiterNotFoundException();
+            return recruiter;
+        }
+
     }
 }
