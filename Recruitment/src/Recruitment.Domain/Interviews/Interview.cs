@@ -13,16 +13,8 @@ namespace Recruitment.Domain.Interviews
         public Recruiter Recruiter { get; set; }
         public DateTime InterviewDate { get; set; }
 
-        public Interview(DateTime availability, Candidate candidate, List<Recruiter> availableRecruiters, IRecruiterRepository recruiters)
+        public Interview(DateTime availability, Candidate candidate, Recruiter recruiter)
         {
-            var appropriateRecruiter = availableRecruiters
-                .FirstOrDefault(a => !candidate.Skills.Except(a.Skills).Any());
-
-            if (appropriateRecruiter == null) throw new RecruiterNotFoundException();
-
-            var recruiter = recruiters.BookAvailability(appropriateRecruiter, availability);
-
-
             this.Candidate = candidate;
             this.Recruiter = recruiter;
             this.InterviewDate = availability;

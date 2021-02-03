@@ -24,7 +24,8 @@ namespace Recruitment.Application
             var candidate = _candidates.FindById(candidateId);
             var availableRecruiters = _recruiters.FindRecruiterByAvailability(availability);
 
-            var interview = new Interview(availability, candidate, availableRecruiters, _recruiters);
+            var recruiter = new RecruiterFinder().FindAppropriateRecruiter(availability, candidate, availableRecruiters, _recruiters);
+            var interview = new Interview(availability, candidate, recruiter);
 
             _interviews.Save(interview);
             return interview;
