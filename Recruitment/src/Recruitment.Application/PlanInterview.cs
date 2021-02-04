@@ -22,10 +22,11 @@ namespace Recruitment.Application
         public Interview Plan(long candidateId, DateTime availability)
         {
             var candidate = _candidates.FindById(candidateId);
+            var candidateSkills = candidate.Skills;
             var availableRecruiters = _recruiters.FindRecruiterByAvailability(availability);
 
             var appropriateRecruiter = availableRecruiters
-                .FirstOrDefault(recruiter => !candidate.Skills.Except(recruiter.Skills).Any());
+                .FirstOrDefault(recruiter => !candidateSkills.Except(recruiter.Skills).Any());
 
             if (appropriateRecruiter == null) throw new RecruiterNotFoundException();
 
