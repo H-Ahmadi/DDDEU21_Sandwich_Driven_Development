@@ -24,27 +24,15 @@ namespace Recruitment.Tests.TestDoubles
             };
         }
 
-        public List<Recruiter> FindRecruiterByAvailability(DateTime availability)
+        public List<Recruiter> FindAllRecruiters()
         {
-            return _recruiters
-                .Where(a => a.Availabilities.Contains(availability))
-                .ToList();
+            return _recruiters;
         }
 
-        public Recruiter BookAvailability(Recruiter appropriateRecruiter, DateTime availability)
+        public Recruiter UpdateRecruiter(Recruiter recruiter)
         {
-            var recruiters = _recruiters.Where(a => a.Id == appropriateRecruiter.Id);
-            foreach (var recruiter in recruiters)
-                recruiter.Availabilities.Remove(availability);
-            return FindRecruiterById(appropriateRecruiter.Id);
-        }
-
-        private Recruiter FindRecruiterById(long recruiterId)
-        {
-            var recruiter = _recruiters.FirstOrDefault(a => a.Id == recruiterId);
-            if (recruiter == null) throw new  RecruiterNotFoundException();
+            // update this recruiter
             return recruiter;
         }
-
     }
 }

@@ -22,9 +22,7 @@ namespace Recruitment.Application
         public Interview Plan(long candidateId, DateTime availability)
         {
             var candidate = _candidates.FindById(candidateId);
-            var availableRecruiters = _recruiters.FindRecruiterByAvailability(availability);
-
-            var recruiter = new RecruiterFinder().FindAppropriateRecruiter(availability, candidate, availableRecruiters, _recruiters);
+            var recruiter = new BookRecruiter().FindRecruiter(availability, candidate, _recruiters);
             var interview = new Interview(availability, candidate, recruiter);
 
             _interviews.Save(interview);

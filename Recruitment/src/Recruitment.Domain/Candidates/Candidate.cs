@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using Recruitment.Domain.Recruiters;
 
 namespace Recruitment.Domain.Candidates
 {
@@ -13,6 +16,16 @@ namespace Recruitment.Domain.Candidates
             Id = id;
             Name = name;
             Skills = skills;
+        }
+
+        public Recruiter FindAppropriateRecruiter(DateTime availability, List<Recruiter> allRecruiters)
+        {
+            var availableRecruiter =  allRecruiters
+                .Where(recruiter => recruiter.CanTest(Skills))
+                .FirstOrDefault(recruiter => recruiter.IsAvailable(availability));
+
+            if (availableRecruiter == null) throw new RecruiterNotFoundException();
+            return availableRecruiter;
         }
         public Candidate()
         {

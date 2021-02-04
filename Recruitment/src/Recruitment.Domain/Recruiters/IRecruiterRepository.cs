@@ -5,7 +5,7 @@ namespace Recruitment.Domain.Recruiters
 {
     public interface IRecruiterRepository
     {
-        List<Recruiter> FindRecruiterByAvailability(DateTime availability);
-        Recruiter BookAvailability(Recruiter appropriateRecruiter, DateTime availability);
+        List<Recruiter> FindAllRecruiters();
+        Recruiter UpdateRecruiter(Recruiter recruiter);
     }
 }

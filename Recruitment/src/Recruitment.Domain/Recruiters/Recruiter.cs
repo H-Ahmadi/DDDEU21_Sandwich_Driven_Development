@@ -28,6 +28,15 @@ namespace Recruitment.Domain.Recruiters
         {
             return !candidateSkills.Except(this.Skills).Any();
         }
+        public bool IsAvailable(DateTime availability)
+        {
+            return Availabilities.Contains(availability);
+        }
+
+        public void Book(DateTime availability)
+        {
+            Availabilities.Remove(availability);
+        }
 
         public override string ToString()
         {
