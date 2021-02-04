@@ -11,8 +11,9 @@ namespace Recruitment.Domain.Recruiters
         public Recruiter FindAppropriateRecruiter(DateTime availability, Candidate candidate,
             List<Recruiter> availableRecruiters, IRecruiterRepository recruiters)
         {
+            var candidateSkills = candidate.Skills;
             var appropriateRecruiter = availableRecruiters
-                .FirstOrDefault(availableRecruiter => availableRecruiter.CanTest(candidate.Skills));
+                .FirstOrDefault(availableRecruiter => availableRecruiter.CanTest(candidateSkills));
 
             if (appropriateRecruiter == null)  throw new RecruiterNotFoundException();
 
