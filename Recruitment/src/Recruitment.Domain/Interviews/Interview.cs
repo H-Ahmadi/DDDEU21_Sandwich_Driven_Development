@@ -15,8 +15,9 @@ namespace Recruitment.Domain.Interviews
 
         public Interview(DateTime availability, Candidate candidate, List<Recruiter> availableRecruiters)
         {
+            var candidateSkills = candidate.Skills;
             var appropriateRecruiter = availableRecruiters
-                .FirstOrDefault(recruiter => !candidate.Skills.Except(recruiter.Skills).Any());
+                .FirstOrDefault(recruiter => !candidateSkills.Except(recruiter.Skills).Any());
 
             if (appropriateRecruiter == null) throw new RecruiterNotFoundException();
 
