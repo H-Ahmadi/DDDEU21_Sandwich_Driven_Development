@@ -8,11 +8,11 @@
 [789,02/21/2021 00:00:00] => Exception of type 'Recruitment.Domain.Recruiters.RecruiterNotFoundException' was thrown.
 [789,02/22/2021 00:00:00] => Exception of type 'Recruitment.Domain.Recruiters.RecruiterNotFoundException' was thrown.
 [10000,02/20/2021 00:00:00] => Object reference not set to an instance of an object.
-[10000,02/21/2021 00:00:00] => Exception of type 'Recruitment.Domain.Recruiters.RecruiterNotFoundException' was thrown.
-[10000,02/22/2021 00:00:00] => Exception of type 'Recruitment.Domain.Recruiters.RecruiterNotFoundException' was thrown.
+[10000,02/21/2021 00:00:00] => Object reference not set to an instance of an object.
+[10000,02/22/2021 00:00:00] => Object reference not set to an instance of an object.
 [20000,02/20/2021 00:00:00] => Object reference not set to an instance of an object.
-[20000,02/21/2021 00:00:00] => Exception of type 'Recruitment.Domain.Recruiters.RecruiterNotFoundException' was thrown.
-[20000,02/22/2021 00:00:00] => Exception of type 'Recruitment.Domain.Recruiters.RecruiterNotFoundException' was thrown.
+[20000,02/21/2021 00:00:00] => Object reference not set to an instance of an object.
+[20000,02/22/2021 00:00:00] => Object reference not set to an instance of an object.
 [30000,02/20/2021 00:00:00] => Object reference not set to an instance of an object.
-[30000,02/21/2021 00:00:00] => Exception of type 'Recruitment.Domain.Recruiters.RecruiterNotFoundException' was thrown.
-[30000,02/22/2021 00:00:00] => Exception of type 'Recruitment.Domain.Recruiters.RecruiterNotFoundException' was thrown.
+[30000,02/21/2021 00:00:00] => Object reference not set to an instance of an object.
+[30000,02/22/2021 00:00:00] => Object reference not set to an instance of an object.
