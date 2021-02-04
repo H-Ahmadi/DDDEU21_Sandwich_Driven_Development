@@ -33,8 +33,9 @@ namespace Recruitment.Application
 
         private static Interview GetInterview(DateTime availability, Candidate candidate, IEnumerable<Recruiter> availableRecruiters)
         {
+            var candidateSkills = candidate.Skills;
             var appropriateRecruiter = availableRecruiters
-                .FirstOrDefault(recruiter => !candidate.Skills.Except(recruiter.Skills).Any());
+                .FirstOrDefault(recruiter => !candidateSkills.Except(recruiter.Skills).Any());
 
             if (appropriateRecruiter == null) throw new RecruiterNotFoundException();
             var interview = new Interview()
