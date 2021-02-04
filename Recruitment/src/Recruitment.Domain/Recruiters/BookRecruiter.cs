@@ -8,8 +8,8 @@ namespace Recruitment.Domain.Recruiters
     {
         public Recruiter FindRecruiter(DateTime availability, Candidate candidate, IRecruiterRepository recruiters)
         {
-            List<Recruiter> allRecruiters = recruiters.FindAllRecruiters();
-            Recruiter appropriateRecruiter = candidate.FindAppropriateRecruiter(availability, allRecruiters);
+            var allRecruiters = recruiters.FindAllRecruiters();
+            var appropriateRecruiter = candidate.FindAppropriateRecruiter(availability, allRecruiters);
             appropriateRecruiter.Book(availability);
             return recruiters.UpdateRecruiter(appropriateRecruiter);
         }
