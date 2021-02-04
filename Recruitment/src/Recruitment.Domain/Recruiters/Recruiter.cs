@@ -7,35 +7,34 @@ namespace Recruitment.Domain.Recruiters
 {
     public class Recruiter
     {
-        public long Id { get; set; }
-        public List<string> Skills { get; set; } = new List<string>();
-        public List<DateTime> Availabilities { get; set; } = new List<DateTime>();
-        public string Name { get; set; }
+        private List<string> _skills;
+        private List<DateTime> _availabilities;
+
+        public long Id { get;private set; }
+        public IReadOnlyList<string> Skills => _skills.AsReadOnly();
+        public IReadOnlyList<DateTime> Availabilities => _availabilities.AsReadOnly();
+        public string Name { get;private set; }
 
         public Recruiter(long id, string name, List<string> skills, List<DateTime> availabilities)
         {
             Id = id;
             Name = name;
-            Skills = skills;
-            Availabilities = availabilities;
-        }
-        public Recruiter()
-        {
-            
+            _skills = skills;
+            _availabilities = availabilities;
         }
 
         public bool CanTest(List<string> candidateSkills)
         {
-            return !candidateSkills.Except(this.Skills).Any();
+            return !candidateSkills.Except(this._skills).Any();
         }
         public bool IsAvailable(DateTime availability)
         {
-            return Availabilities.Contains(availability);
+            return _availabilities.Contains(availability);
         }
 
         public void Book(DateTime availability)
         {
-            Availabilities.Remove(availability);
+            _availabilities.Remove(availability);
         }
 
         public override string ToString()

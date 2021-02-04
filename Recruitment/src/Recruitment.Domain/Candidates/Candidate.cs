@@ -8,28 +8,26 @@ namespace Recruitment.Domain.Candidates
 {
     public class Candidate
     {
-        public long Id { get; set; }
-        public List<string> Skills { get; set; } = new List<string>();
-        public string Name { get; set; }
+        private List<string> _skills;
+        public long Id { get;private set; }
+        public string Name { get;private set; }
+        public IReadOnlyList<string> Skills => _skills.AsReadOnly();
+
         public Candidate(long id, string name, List<string> skills)
         {
             Id = id;
             Name = name;
-            Skills = skills;
+            _skills = skills;
         }
 
         public Recruiter FindAppropriateRecruiter(DateTime availability, List<Recruiter> allRecruiters)
         {
             var availableRecruiter =  allRecruiters
-                .Where(recruiter => recruiter.CanTest(Skills))
+                .Where(recruiter => recruiter.CanTest(_skills))
                 .FirstOrDefault(recruiter => recruiter.IsAvailable(availability));
 
             if (availableRecruiter == null) throw new RecruiterNotFoundException();
             return availableRecruiter;
-        }
-        public Candidate()
-        {
-            
         }
         public override string ToString()
         {
